@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Pydenticon</title>
+</head>
+<body>
+    <div id="main" class="container" style="text-align:center;">
+        <div class="svg-container container">
+                <svg id="treehouse" fill="black" viewBox="0 0 600 400"></svg>
+        </div>
+        <h1 class="center-align light-blue-text text-darken-1">Pydenticon
+            <i class="tiny material-icons light-blue-text text-darken-1 tooltipped" id="info" data-tooltip="Pydenticon uses the SHA512 hashing algorithm to generate a unique tree from any input string.">info_outline</i>
+        </h1>
+        <input id="input" type="text" placeholder="Type to create a unique tree!">
+        <br>
+        <a class="waves-effect waves-light btn red lighten-2 scale-transition scale-out" id="donate" href="https://www.paypal.me/benjamineli">Support My Work</a>
+        <a class="waves-effect waves-light btn light-blue darken-1 scale-transition scale-out" id="pngButton">Export png</a>
+        <br>
+    </div>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/2.3.1/sha3.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="js/svg2png.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
