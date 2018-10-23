@@ -2,6 +2,8 @@
 document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('.tooltipped');
     var instances = M.Tooltip.init(elems, {position: 'right', margin: 10});
+    trees("Brandi");
+    document.getElementById("input").focus();
 });
 
 d3.select("#input")
@@ -25,8 +27,6 @@ var lumScale = d3.scaleLinear().domain([0,15]).range([0,100]);
 var abScale = d3.scaleLinear().domain([0,15]).range([-100,100]);
 var branchScale = d3.scaleQuantize().domain([0,15]).range([0,1,2])
 var hashbrown = new jsSHA("SHA3-512", "TEXT");
-
-document.onload = trees("Brandi");
 
 function svg2png(){
     saveSvgAsPng(document.getElementById("treehouse"), `${d3.select("#input").property("value")}.png`, {scale:3, backgroundColor: "white"});
