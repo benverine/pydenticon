@@ -8,6 +8,11 @@
     margin-bottom: 3%;
 }
 
+#input:focus {
+    border-bottom: 1px solid #039be5 !important;
+    box-shadow: 0 1px 0 0 #039be5 !important
+}
+
 h1 {
     font-family: 'Roboto', sans-serif;
     font-style: Thin;
