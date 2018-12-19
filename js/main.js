@@ -81,7 +81,7 @@ function drawTree(x1, y1, x2, y2, depth) {
         .attr("fill", "white")
         .transition()
         .delay(function(){
-            let filter = d3.scaleLinear().domain([0, depthLimit]).range([0, 1500]);
+            let filter = d3.scaleLinear().domain([0, depthLimit]).range([0, 1000]);
             return filter(depth);
         })
         .duration(1000)
