@@ -25,7 +25,6 @@ var counter = 0;
 var colorMap;
 var lumScale = d3.scaleLinear().domain([0,15]).range([0,100]);
 var abScale = d3.scaleLinear().domain([0,15]).range([-100,100]);
-var branchScale = d3.scaleQuantize().domain([0,15]).range([0,1,2])
 var hashbrown = new jsSHA("SHA3-512", "TEXT");
 
 function svg2png(){
@@ -56,7 +55,7 @@ function drawTree(x1, y1, x2, y2, depth) {
         counter = 0;
     }
     let index = charToHex(hash.charAt(counter));
-    let branch = branchScale(index);
+    let branch = index;
  
     if (depth == depthLimit)
         return;
@@ -74,14 +73,16 @@ function drawTree(x1, y1, x2, y2, depth) {
     svg
         .append("path")
         .attr("d", `M ${x1} ${y1} L ${x2} ${y2} L ${x3} ${y3} L ${x4} ${y4} L ${x1} ${y1}`)
+        .attr("fill", "white")
+        .transition()
+        .delay(d=>{
+            let filter = d3.scaleLinear().domain([0, depthLimit]).range([0, 1500]);
+            return filter(depth);
+        })
+        .duration(1000)
         .attr("fill", colorMap(index));
-    // svg
-    //     .append("path")
-    //     .attr("d", `M ${x3} ${y3} L ${x4} ${y4} L ${x5} ${y5} L ${x3} ${y3}`)
-    //     .attr("fill", "white");
-
     counter++;
-    if (counter % 2 != 0 && depth > 1){
+    if (depth > 1){
         if(branch == 1){
             drawTree(x4, y4, x5, y5, depth + 1);
         } else if (branch==2){
