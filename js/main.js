@@ -40,10 +40,15 @@ function trees(string){
     var b1 = abScale(charToHex(hash.charAt(1)));
     var a2 = abScale(charToHex(hash.charAt(2)));
     var b2 = abScale(charToHex(hash.charAt(3)));
-    colorMap = d3.scaleLinear().domain([0,15]).range([d3.lab(10, a1, b1), d3.lab(90, a2, b2)]);
+    colorMapA = d3.scaleLinear().domain([0,15]).range([d3.lab(10, a1, b1), d3.lab(90, a2, b2)]);
+
+    var a3 = abScale(charToHex(hash.charAt(4)));
+    var b3 = abScale(charToHex(hash.charAt(5)));
+    var a4 = abScale(charToHex(hash.charAt(6)));
+    var b4 = abScale(charToHex(hash.charAt(7)));
+    colorMapB = d3.scaleLinear().domain([0,15]).range([d3.lab(10, a3, b3), d3.lab(90, a4, b4)]);
     drawTree(250, 400, 350, 400, 0);
     hashbrown = new jsSHA("SHA3-512", "TEXT");
-
 }
 
 function charToHex(char){
@@ -75,12 +80,18 @@ function drawTree(x1, y1, x2, y2, depth) {
         .attr("d", `M ${x1} ${y1} L ${x2} ${y2} L ${x3} ${y3} L ${x4} ${y4} L ${x1} ${y1}`)
         .attr("fill", "white")
         .transition()
-        .delay(d=>{
+        .delay(function(){
             let filter = d3.scaleLinear().domain([0, depthLimit]).range([0, 1500]);
             return filter(depth);
         })
         .duration(1000)
-        .attr("fill", colorMap(index));
+        .attr("fill", function(){
+            if (depth < 8){
+                return colorMapA(index);
+            } else {
+                return colorMapB(index); 
+            }
+        });
     counter++;
     if (depth > 1){
         if(branch == 1){
